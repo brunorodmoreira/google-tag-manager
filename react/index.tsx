@@ -1,7 +1,7 @@
 import { canUseDOM } from 'vtex.render-runtime'
 
 import push from './modules/push'
-import { Order, PixelMessage, ProductOrder, Impression } from './typings/events'
+import { Order, PixelMessage, ProductOrder, Impression, CommertialOffer } from './typings/events'
 
 export default function() {
   return null
@@ -192,6 +192,10 @@ export function handleEvents(e: PixelMessage) {
   }
 }
 
+function getAvailability(commertialOffer: CommertialOffer) {
+  return commertialOffer.AvailableQuantity > 0
+}
+
 function getPurchaseObjectData(order: Order) {
   return {
     affiliation: order.transactionAffiliation,
@@ -242,7 +246,7 @@ const getProductImpressionObjectData = (list: string) => ({
   price: `${product.sku.seller!.commertialOffer.Price}`,
   priceFrom: `${product.sku.seller!.commertialOffer.ListPrice}`,
   variant: product.sku.name,
-  available: product.sku.seller!.commertialOffer.AvailableQuantity > 0,
+  available: getAvailability(product.sku.seller!.commertialOffer),
   imageURL: product.sku.image.imageUrl,
 })
 
