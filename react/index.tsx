@@ -24,12 +24,7 @@ export function handleEvents(e: PixelMessage) {
     case 'vtex:productView': {
       const { selectedSku, productName, brand, categories } = e.data.product
 
-      let price
-      try {
-        price = e.data.product.items[0].sellers[0].commertialOffer.Price
-      } catch {
-        price = undefined
-      }
+      const commertialOffer = selectedSku.sellers?.[0].commertialOffer
 
       const data = {
         ecommerce: {
@@ -41,7 +36,8 @@ export function handleEvents(e: PixelMessage) {
                 id: selectedSku.itemId,
                 name: productName,
                 variant: selectedSku.name,
-                price,
+                price: commertialOffer.Price,
+                priceFrom: commertialOffer.ListPrice,
               },
             ],
           },
