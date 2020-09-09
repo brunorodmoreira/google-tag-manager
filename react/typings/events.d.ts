@@ -287,6 +287,7 @@ interface ItemSummary {
   referenceId: { Key: string; Value: string }
   seller: Seller
   sellers: Seller[]
+  image: { imageUrl: string }
 }
 
 export interface Seller {
