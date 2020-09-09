@@ -87,7 +87,7 @@ export function handleEvents(e: PixelMessage) {
       push({
         ecommerce: {
           add: {
-            products: items.map((sku: any) => ({
+            products: items.map(sku => ({
               brand: sku.brand,
               category: sku.category,
               id: sku.skuId,
@@ -95,6 +95,7 @@ export function handleEvents(e: PixelMessage) {
               price: `${sku.price}`,
               quantity: sku.quantity,
               variant: sku.variant,
+              imageURL: sku.imageUrl
             })),
           },
           currencyCode: e.data.currency,
