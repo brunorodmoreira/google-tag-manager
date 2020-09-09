@@ -38,7 +38,8 @@ export function handleEvents(e: PixelMessage) {
                 variant: selectedSku.name,
                 price: commertialOffer.Price,
                 priceFrom: commertialOffer.ListPrice,
-                available: getAvailability(commertialOffer)
+                available: getAvailability(commertialOffer),
+                imageURL: selectedSku.imageUrl,
               },
             ],
           },
