@@ -244,8 +244,9 @@ const getProductImpressionObjectData = (list: string) => ({
   name: product.productName,
   position,
   price: `${product.sku.seller!.commertialOffer.Price}`,
-  priceFrom: `${product.sku.seller?.commertialOffer.ListPrice}`,
+  priceFrom: `${product.sku.seller!.commertialOffer.ListPrice}`,
   variant: product.sku.name,
+  available: product.sku.seller!.commertialOffer.AvailableQuantity > 0,
 })
 
 if (canUseDOM) {
